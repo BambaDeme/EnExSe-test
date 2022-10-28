@@ -14,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1")
+@CrossOrigin(origins = "*")
 public class AgentController {
 
     private final AgentService agentService;
@@ -28,7 +29,7 @@ public class AgentController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("results",this.agentService.getAgents()))
+                        .results(this.agentService.getAgents())
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
                         .message("Agents retrieved")
@@ -41,7 +42,7 @@ public class AgentController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("results",this.agentService.addAgent(agent)))
+                        .results(List.of(this.agentService.addAgent(agent)))
                         .status(HttpStatus.CREATED)
                         .statusCode(HttpStatus.CREATED.value())
                         .message("New Agent created")
@@ -54,7 +55,7 @@ public class AgentController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("results",this.agentService.updateAgent(name,agent)))
+                        .results(List.of(this.agentService.updateAgent(name,agent)))
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
                         .message("agent updated")
@@ -67,7 +68,7 @@ public class AgentController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("results",this.agentService.deleteAgent(id)))
+                        .results(List.of(this.agentService.deleteAgent(id)))
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
                         .message("agent deleted")

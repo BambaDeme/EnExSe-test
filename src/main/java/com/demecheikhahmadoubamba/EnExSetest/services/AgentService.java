@@ -39,12 +39,14 @@ public class AgentService {
 
     }
 
-    public Boolean deleteAgent(Long id) {
+    public Agent deleteAgent(Long id) {
         if(!agentRepository.existsById(id)){
             throw new IllegalStateException("Agent with id "+ id +" does not exist");
+
         }
 
+        Agent agentToDelete = this.agentRepository.findById(id).get();
         agentRepository.deleteById(id);
-        return Boolean.TRUE;
+        return agentToDelete;
     }
 }

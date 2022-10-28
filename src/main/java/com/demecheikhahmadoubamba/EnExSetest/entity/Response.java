@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -16,5 +17,5 @@ public class Response {
     protected int statusCode;
     protected HttpStatus status;
     protected String message;
-    protected Map<?,?> data;
+    protected List<Agent> results;
 }
